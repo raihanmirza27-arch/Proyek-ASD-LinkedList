@@ -124,16 +124,54 @@ public class SinglyLinkedList implements LinkedList{
         // TODO digunakan mencari kemunculan pertama targetData pada linked list dan mengembalikan indeksnya. Indeks dari head adalah 0. Jika tidak ada targetData pada linked list, kembalikan nilai -1 
         return 0;
     }
+
+    //Dikerjakan oleh Raihan Mirza Firdaus - 255150207111107
     @Override
     public void printReverse() {
-        // TODO digunakan untuk mencetak data pada linked list dengan urutan terbalik, dari tail ke head.
-        
+        Object[] data = new Object[size];
+        Node currentNode = head;
+
+        for(int i = 0; i < size; i++) {
+            data[i] = currentNode.data;
+            currentNode = currentNode.pointer;
+        }
+
+        for(int i = size -1; i >= 0; i--) {
+            System.out.println(data[i]);
+        }
     }
+
+    //Dikerjakan oleh Raihan Mirza Firdaus - 255150207111107
     @Override
     public boolean remove(Object targetData) {
-        // TODO digunakan untuk mencari dan menghapus node dengan data=targetData pada linked list serta mengembalikan nilai True jika berhasil, dan False jika targetData tidak ada di linkedList
+        Node currentNode = head;
+        Node prevNode = null;
+
+        while (currentNode != null) {
+            if(currentNode.data == targetData) {
+                if(currentNode == head) {
+                    head = currentNode.pointer;
+                } else {
+                    prevNode.pointer = currentNode.pointer;
+                }
+
+                if(currentNode == tail) {
+                    tail = prevNode;
+            }
+
+            size--;
+            return true;
+
+            }
+
+            prevNode = currentNode;
+            currentNode = currentNode.pointer;
+
+        }
+
         return false;
     }
+    
     @Override
     public Object[] toArray() {
         // TODO digunakan untuk mendapatkan keseluruhan data pada node-node di linked list dalam bentuk array. Data-data pada array disusun secara urut mulai dari head sampai dengan tail.
