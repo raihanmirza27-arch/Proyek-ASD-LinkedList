@@ -123,12 +123,32 @@ public class DoublyLinkedList implements LinkedList{
     @Override
     public Object get(int index) {
         // TODO digunakan untuk mengembalikan data pada index ke-i dimulai dari head. Head memiliki index 0
-        return null;
+        // Dikerjakan oleh M. Roby Alam Kusuma - 255150200111068
+        Node2P currentNode = head;
+        if(isEmpty()){
+            System.out.println("List kosong");
+            return null;
+        } 
+        if(index>size){
+            return "Index out of bounds";
+        }
+        for(int i = 0;i<=index;i++){
+            currentNode = currentNode.next;
+        }
+        return currentNode.data;
     }
     @Override
     public int indexOf(Object targetData) {
         // TODO digunakan mencari kemunculan pertama targetData pada linked list dan mengembalikan indeksnya. Indeks dari head adalah 0. Jika tidak ada targetData pada linked list, kembalikan nilai -1 
-        return 0;
+        // Dikerjakan oleh M. Roby Alam Kusuma
+        Node2P currentNode = head;
+        for(int i=0;i<size;i++){
+            if(currentNode.data.equals(targetData)){
+                return i;
+            }
+            currentNode = currentNode.next;
+        }
+        return -1;
     }
 
     //Dikerjakan oleh Raihan Mirza Firdaus - 255150207111107
@@ -137,9 +157,10 @@ public class DoublyLinkedList implements LinkedList{
         Node2P currentNode = tail;
 
         while (currentNode != null) {
-            System.out.println(currentNode.data);
+            System.out.print(currentNode.data + " ");
             currentNode = currentNode.prev;
         }
+        System.out.println();
     }
 
     //Dikerjakan oleh Raihan Mirza Firdaus - 255150207111107
@@ -174,6 +195,12 @@ public class DoublyLinkedList implements LinkedList{
     @Override
     public Object[] toArray() {
         // TODO digunakan untuk mendapatkan keseluruhan data pada node-node di linked list dalam bentuk array. Data-data pada array disusun secara urut mulai dari head sampai dengan tail.
-        return null;
+        Object[] array = new Object[size];
+        Node2P currentNode = head;
+        for (int i = 0; i < size; i++) {
+            array[i] = currentNode.data;
+            currentNode = currentNode.next;
+        }
+        return array;
     }
 }
