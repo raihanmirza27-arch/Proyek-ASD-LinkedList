@@ -114,15 +114,38 @@ public class SinglyLinkedList implements LinkedList{
             currentNode = currentNode.pointer;
         }
     }
+    //Dikerjakan oleh Muhammad Dustin Hazeldo Tolle - 235150207111024
     @Override
     public Object get(int index) {
         // TODO digunakan untuk mengembalikan data pada index ke-i dimulai dari head. Head memiliki index 0
-        return null;
+        if(index < 0 || index >= size) {
+            return null;
+        }
+
+        Node currentNode = head;
+
+        for(int i = 0; i < index; i++) {
+            currentNode = currentNode.pointer;
+        }
+        return currentNode.data;
     }
+    //Dikerjakan oleh Muhammad Dustin Hazeldo Tolle - 235150207111024
     @Override
     public int indexOf(Object targetData) {
         // TODO digunakan mencari kemunculan pertama targetData pada linked list dan mengembalikan indeksnya. Indeks dari head adalah 0. Jika tidak ada targetData pada linked list, kembalikan nilai -1 
-        return 0;
+        Node currentNode = head;
+        int index = 0;
+
+        while(currentNode != null) {
+            if(targetData == null ? currentNode.data == null : targetData.equals(currentNode.data)) {
+                return index;
+            }
+
+            currentNode = currentNode.pointer;
+            index++;
+        }
+
+        return -1;
     }
 
     //Dikerjakan oleh Raihan Mirza Firdaus - 255150207111107
@@ -172,9 +195,18 @@ public class SinglyLinkedList implements LinkedList{
         return false;
     }
     
+    //Dikerjakan oleh Muhammad Dustin Hazeldo Tolle - 235150207111024
     @Override
     public Object[] toArray() {
         // TODO digunakan untuk mendapatkan keseluruhan data pada node-node di linked list dalam bentuk array. Data-data pada array disusun secara urut mulai dari head sampai dengan tail.
-        return null;
+        Object[] data = new Object[size];
+        Node currentNode = head;
+
+        for(int i = 0; i < size; i++) {
+            data[i] = currentNode.data;
+            currentNode = currentNode.pointer;
+        }
+
+        return data;
     }
 }
