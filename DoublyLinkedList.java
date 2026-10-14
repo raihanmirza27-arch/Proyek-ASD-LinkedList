@@ -132,7 +132,7 @@ public class DoublyLinkedList implements LinkedList{
         if(index>size){
             return "Index out of bounds";
         }
-        for(int i = 0;i<=index;i++){
+        for(int i = 0;i<index;i++){
             currentNode = currentNode.next;
         }
         return currentNode.data;
